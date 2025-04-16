@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Notesapp.Viewmodels"
+             x:Class="Notesapp.Views.Noteview">
+
+    <VerticalStackLayout Padding="15">
+        <Frame>
+            <VerticalStackLayout Spacing="5">
+                <Label 
+          Text="Note Data"
+          FontSize="Medium"
+          HorizontalOptions="Start" />
+                <Label 
+      Text="Note Title"
+      FontSize="Small"
+      HorizontalOptions="Start" />
+                <Entry HeightRequest="50"
+             FontSize="Medium"
+             Placeholder="enter the Book_id"
+             Text="{Binding Book_id}"/>
+                <Editor HeightRequest="50"
+              FontSize="Medium"
+              Placeholder="enter the Autor_id"
+              Text="{Binding Autor_id}"/>
+   
+                <Button Text="Add Notes" Command="{Binding AddNoteCommand}"/>
+            </VerticalStackLayout>
+        </Frame>
+        <ListView  ItemSelected="ListView_ItemSelected" ItemsSource="{Binding NoteCollection} " SelectedItem="{Binding SelectedBookAuthor}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Book_id}" Detail="{Binding Autor_id}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <HorizontalStackLayout Spacing="30">
+            <Button Text="edit notes" Command="{Binding EditNoteCommand}"/>
+            <Button Text="delete notes " Command="{Binding DeleteNoteCommand}"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentView>
